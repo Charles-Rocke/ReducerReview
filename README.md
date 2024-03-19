@@ -3,14 +3,21 @@
 **reducers:**
 
 - used when state is more complex, instead of one piece of state, state is usually an object
-
-**useReducer() hook:**
-
+- reducers can be of great help when:
+  when components have a lot of state variables and state updates, spread across many event handlers all over the component
+  when multiple state updates need to happen at the same time (as a reaction to the same event, like "starting a game")
+  when updating one piece of state depends on one or multiple other pieces of state
+- **useReducer() hook:**
+- stores related pieces of state in a state object ( [*state*, dispatch] )
+- allows us to completely decouple state logic from a component which makes the components cleaner and more readable
+- ultimately the reducer function will be updating the state object
 - is a more advanced and more complex way of managing state instead of the useState hook.
 - works with a reducer function (a pure function that always takes in a previous state and an action as an argument and then returns the next state)
 - 'useReducer()' takes in the initial state and the reducer function ( useReducer(reducer, initialState) )
 - 'useReducer()' first argument must be a reducer function and the second arg must be the state
 - 'useReducer()' returns current state and dispatch function that is used to update state
+- 'dispatch' is a function to trigger state updates, by "sending" actions from event handlers to the reducer
+  function
 - 'dispatch()' sends an action to the reducer that is essentially an action identifier (keyword for a specific action) for ex. if the action = "login", then the login action in the reducer will be called and performed
 - 'dispatch()' receives an object that defines the type of action and the payload that is passed in
   ( dispatch({ type: "dec", payload: -1 }) ), the entire object ( { type: "dec", payload: -1 } ) is considered the action
@@ -22,6 +29,8 @@
 
 **function reducer():** takes in the current state and an action ( reducer(currentState, action) )
 
+- is a pure function and has **NO SIDE EFFECTS** and **CANNOT MUTATE STATE** but only returns new state
+- an action is typically an object that describes how to update state with a type and a payload
 - the idea of the reducer function ( 'function reducer(currentState, action)' ) is to take the current state + the action and the result (=), will be the next state
 - when returning new state, you want to keep the same shape. So if the state is an object you will spread the object and add the value that will be overridden and changed.
   for ex. if the state contained a count and a step {count: 0, step: 1} and we wanted to change the count, this is how we would do it:
