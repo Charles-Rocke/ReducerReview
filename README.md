@@ -1,6 +1,11 @@
 # Learnings
 
-- **useReducer() hook:**
+**reducers:**
+
+- used when state is more complex, instead of one piece of state, state is usually an object
+
+**useReducer() hook:**
+
 - is a more advanced and more complex way of managing state instead of the useState hook.
 - works with a reducer function (a pure function that always takes in a previous state and an action as an argument and then returns the next state)
 - 'useReducer()' takes in the initial state and the reducer function ( useReducer(reducer, initialState) )
@@ -15,8 +20,13 @@
   'function reducer() { if (action.type === "dec") return state - action.payload; }' -->
   { if (action.type === "dec") return state - 1; }
 
-- **'function reducer()'** takes in the current state and an action ( reducer(currentState, action) )
+**function reducer():** takes in the current state and an action ( reducer(currentState, action) )
+
 - the idea of the reducer function ( 'function reducer(currentState, action)' ) is to take the current state + the action and the result (=), will be the next state
+- when returning new state, you want to keep the same shape. So if the state is an object you will spread the object and add the value that will be overridden and changed.
+  for ex. if the state contained a count and a step {count: 0, step: 1} and we wanted to change the count, this is how we would do it:
+  return { ...state, count: state.count + 1 }
+  this will keep everything else the same in the object and change/override the count state
 
 # Getting Started with Create React App
 
